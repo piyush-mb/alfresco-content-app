@@ -54,6 +54,11 @@
                 "glob": "extension.schema.json",
                 "input": ".",
                 "output": "./assets"
+              },
+              {
+                "glob": "**/*.json",
+                "input": "projects/custom-actions/assets",
+                "output": "./assets/plugins"
               }
             ],
             "styles": [
@@ -62,9 +67,9 @@
               "src/styles.scss"
             ],
             "scripts": [
-                "node_modules/pdfjs-dist/build/pdf.js",
-                "node_modules/pdfjs-dist/web/pdf_viewer.js",
-                "node_modules/moment/min/moment.min.js"
+              "node_modules/pdfjs-dist/build/pdf.js",
+              "node_modules/pdfjs-dist/web/pdf_viewer.js",
+              "node_modules/moment/min/moment.min.js"
             ]
           },
           "configurations": {
@@ -218,6 +223,41 @@
             "exclude": [
               "**/node_modules/**",
               "package.json"
+            ]
+          }
+        }
+      }
+    },
+    "custom-actions": {
+      "root": "projects/custom-actions",
+      "sourceRoot": "projects/custom-actions/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/custom-actions/tsconfig.lib.json",
+            "project": "projects/custom-actions/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/custom-actions/src/test.ts",
+            "tsConfig": "projects/custom-actions/tsconfig.spec.json",
+            "karmaConfig": "projects/custom-actions/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/custom-actions/tsconfig.lib.json",
+              "projects/custom-actions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
             ]
           }
         }

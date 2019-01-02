@@ -207,7 +207,7 @@ Finally, update the `assets/app.extensions.json` file and add a reference to the
 {
     "$references": [
         ...,
-        "my-extension.json"
+        custom-actions.json
     ]
 }
 ```
