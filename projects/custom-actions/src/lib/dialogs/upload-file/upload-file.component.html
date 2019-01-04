@@ -1,0 +1,91 @@
+<header mat-dialog-title>Upload files to {{node.name}} folder</header>
+
+<section mat-dialog-content *ngIf="node?.id" style="padding: 0">
+  <mat-card>
+
+    <mat-card-content>
+
+      <adf-upload-drag-area [parentId]="node?.id" (beginUpload)="onBeginUpload($event)">
+
+        <adf-datatable [data]="tableData" [rows]="getDetails(currentEvent)">
+
+          <no-content-template>
+
+            <ng-template>
+
+              <adf-empty-list>
+                <div class="adf-empty-list_template adf-empty-folder">
+
+                  <div fxShow fxHide.xs class="adf-empty-folder-drag-drop">
+                    {{'ADF-DATATABLE.EMPTY.DRAG-AND-DROP.TITLE' | translate }}
+                  </div>
+
+                  <div fxShow fxHide.xs class="adf-empty-folder-any-files-here-to-add">
+                    {{'ADF-DATATABLE.EMPTY.DRAG-AND-DROP.SUBTITLE' | translate }}
+                  </div>
+
+                  <img class="adf-empty-folder-image" [src]="emptyFolderImageUrl">
+
+                </div>
+              </adf-empty-list>
+
+            </ng-template>
+
+          </no-content-template>
+
+          <data-columns>
+            <data-column key="name"
+                         title="Name"
+                         class="adf-data-table-cell--ellipsis__name">
+
+            </data-column>
+            <data-column key="lastModifiedDate"
+                         title="Modified Date"
+                         class="adf-data-table-cell--ellipsis"
+                         type="date">
+            </data-column>
+            <data-column key="size"
+                         title="Size"
+                         class="adf-data-table-cell--ellipsis"
+                         type="fileSize">
+            </data-column>
+          </data-columns>
+        </adf-datatable>
+
+      </adf-upload-drag-area>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+      <adf-upload-button fxLayout fxLayoutAlign="center"
+                         [uploadFolders]="false"
+                         [multipleFiles]="true"
+                         [rootFolderId]="node.id"
+                         (beginUpload)="onBeginUpload($event)">
+      </adf-upload-button>
+
+    </mat-card-actions>
+
+  </mat-card>
+
+</section>
+
+<footer mat-dialog-actions align="end">
+
+  <button mat-button
+          color="warn"
+          [mat-dialog-close]="true"
+          mat-dialog-close>
+    Cancel
+  </button>
+
+  <button mat-button
+          color="primary"
+          [disabled]="!currentEvent"
+          (click)="uploadFiles()"
+          cdkFocusInitial>
+    Confirm
+  </button>
+
+</footer>

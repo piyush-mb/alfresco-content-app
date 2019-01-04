@@ -3,5 +3,5 @@
  */
 
 export * from './lib/custom-actions.service';
-export * from './lib/custom-actions.component';
+export * from './lib/dialogs';
 export * from './lib/custom-actions.module';

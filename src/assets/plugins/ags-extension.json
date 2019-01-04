@@ -1,0 +1,61 @@
+{
+  "$schema": "../../../extension.schema.json",
+  "$id": "ags.extension.metadata",
+  "$vendor": "Alfresco Software, Ltd.",
+  "$license": "LGPL-3.0",
+  "$runtime": "1.5.0",
+  "$version": "1.0.0",
+  "$name": "ags-extension",
+  "$description": "demo plugin",
+
+  "rules": [
+    {
+      "id": "app.extension.isFolder",
+      "type": "core.every",
+      "parameters": [
+        { "type": "rule", "value": "app.selection.folder" }
+      ]
+    }
+  ],
+
+  "features": {
+    "toolbar": [
+      {
+        "id": "app.toolbar.more",
+        "children": [
+          {
+            "id": "app.toolbar.favorite.add",
+            "order": 1600,
+            "title": "Upload File",
+            "icon": "file_upload",
+            "rules": {
+              "visible": "app.extension.isFolder"
+            },
+            "actions": {
+              "click": "SHOW_MY_DIALOG"
+            }
+          }
+        ]
+      }
+    ],
+    "contextMenu": [
+      {
+        "id": "app.create.separator.6",
+        "type": "separator",
+        "order": 1500
+      },
+      {
+        "id": "Custom Action",
+        "order": 1501,
+        "title": "Upload File",
+        "icon": "file_upload",
+        "rules": {
+          "visible": "app.extension.isFolder"
+        },
+        "actions": {
+          "click": "SHOW_MY_DIALOG"
+        }
+      }
+    ]
+  }
+}
