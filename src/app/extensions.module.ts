@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CustomActionsModule } from '@custom-actions';
+import { AgsExtensionModule } from '@ags-extension';
 
 // Main entry point for external extensions only.
 // For any application-specific code use CoreExtensionsModule instead.
 
 @NgModule({
   imports: [
-    CustomActionsModule
+    AgsExtensionModule
   ]
 })
 export class AppExtensionsModule {}

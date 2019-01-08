@@ -4,14 +4,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreModule } from '@alfresco/adf-core';
 import { ContentModule } from '@alfresco/adf-content-services';
 import { EffectsModule } from '@ngrx/effects';
-import * as Dialogs from './dialogs';
-import { effects } from './effects';
-
-export function getComponents(): any[] {
-  return [
-    Dialogs.UploadFileComponent,
-  ]
-}
+import { UploadFileComponent } from './dialogs';
+import { ExtensionEffects } from './effects';
 
 @NgModule({
   imports: [
@@ -19,22 +13,22 @@ export function getComponents(): any[] {
     FlexLayoutModule,
     CoreModule.forChild(),
     ContentModule.forChild(),
-    EffectsModule.forFeature(effects)
+    EffectsModule.forFeature([ ExtensionEffects ])
   ],
   declarations: [
-    ...getComponents()
+    UploadFileComponent
   ],
   entryComponents: [
-    ...getComponents()
+    UploadFileComponent
   ],
   exports: [
-    ...getComponents()
+    UploadFileComponent
   ]
 })
-export class CustomActionsModule {
+export class AgsExtensionModule {
   constructor(extensions: ExtensionService) {
     extensions.setComponents({
-      'ags-extension.main.component': Dialogs.UploadFileComponent
+      'ags-extension.main.component': UploadFileComponent
     });
   }
 }

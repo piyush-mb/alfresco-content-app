@@ -1,5 +1,5 @@
 {
-  "name": "custom-actions",
+  "name": "ags-extension",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "7.1.1",
@@ -9,8 +9,8 @@
     "@alfresco/adf-core": "3.0.0-beta5"
   },
   "alfresco": {
-    "extension": "assets/custom-actions.json",
-    "module": "CustomActionsModule",
-    "namespace": "custom-actions"
+    "extension": "assets/ags-extension.json",
+    "module": "AgsExtensionModule",
+    "namespace": "ags-extension"
   }
 }

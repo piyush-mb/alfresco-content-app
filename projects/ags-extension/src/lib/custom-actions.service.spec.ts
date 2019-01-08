@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CustomActionsService } from './custom-actions.service';
+import { AgsExtensionService } from './ags-extension.service';
 
-describe('CustomActionsService', () => {
+describe('AgsExtensionService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CustomActionsService = TestBed.get(CustomActionsService);
+    const service: AgsExtensionService = TestBed.get(AgsExtensionService);
     expect(service).toBeTruthy();
   });
 });

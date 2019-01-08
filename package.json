@@ -4,7 +4,7 @@
   "license": "LGPL-3.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=3000",
+    "start": "concurrently \"ng build ags-extension --watch\" \"sleep 20;ng serve --port=3000\"",
     "start:prod": "ng serve --prod --open",
     "build": "node --max-old-space-size=8192 node_modules/@angular/cli/bin/ng build app --prod",
     "build:dev": "ng build",
@@ -27,9 +27,9 @@
     "docker.tomcat.start": "cd docker/tomcat && docker-compose up -d --build && wait-on http://localhost:8080 && wait-on http://localhost:4000",
     "docker.tomcat.stop": "cd docker/tomcat && docker-compose stop",
     "docker.tomcat.e2e": "npm run docker.tomcat.start && npm run e2e.tomcat",
-    "build:custom-actions": "ng build custom-actions && cpr projects/custom-actions/assets src/assets/plugins --deleteFirst",
-    "pack:custom-actions": "cd dist/custom-actions && npm pack",
-    "package:custom-actions": "npm run build:custom-actions && npm run pack:custom-actions"
+    "build:ags-extension": "ng build ags-extension",
+    "pack:ags-extension": "cd dist/ags-extension && npm pack",
+    "package:ags-extension": "npm run build:ags-extension && npm run pack:ags-extension"
   },
   "private": true,
   "dependencies": {
@@ -79,6 +79,7 @@
     "alfresco-js-api-node": "3.0.0-beta6",
     "chrome-remote-interface": "^0.26.1",
     "codelyzer": "^4.5.0",
+    "concurrently": "^4.1.0",
     "cpr": "^3.0.1",
     "cspell": "^3.1.3",
     "jasmine-core": "~2.8.0",

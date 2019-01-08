@@ -4,6 +4,10 @@ import { UploadFilesEvent } from '@alfresco/adf-content-services';
 import { ObjectDataTableAdapter } from '@alfresco/adf-core';
 import { Node } from 'alfresco-js-api';
 
+export interface NodeInput {
+  node: Node
+}
+
 @Component({
   selector: 'ags-custom-actions',
   templateUrl: './upload-file.component.html',
@@ -16,7 +20,7 @@ export class UploadFileComponent {
   emptyFolderImageUrl = './assets/images/empty_doc_lib.svg';
 
   constructor(private dialogRef: MatDialogRef<UploadFileComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { node: Node }) {
+              @Inject(MAT_DIALOG_DATA) public data: NodeInput) {
     this.node = data.node;
   }
 

@@ -57,7 +57,7 @@
               },
               {
                 "glob": "**/*.json",
-                "input": "projects/custom-actions/assets",
+                "input": "projects/ags-extension/assets",
                 "output": "./assets/plugins"
               }
             ],
@@ -228,33 +228,33 @@
         }
       }
     },
-    "custom-actions": {
-      "root": "projects/custom-actions",
-      "sourceRoot": "projects/custom-actions/src",
+    "ags-extension": {
+      "root": "projects/ags-extension",
+      "sourceRoot": "projects/ags-extension/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/custom-actions/tsconfig.lib.json",
-            "project": "projects/custom-actions/ng-package.json"
+            "tsConfig": "projects/ags-extension/tsconfig.lib.json",
+            "project": "projects/ags-extension/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/custom-actions/src/test.ts",
-            "tsConfig": "projects/custom-actions/tsconfig.spec.json",
-            "karmaConfig": "projects/custom-actions/karma.conf.js"
+            "main": "projects/ags-extension/src/test.ts",
+            "tsConfig": "projects/ags-extension/tsconfig.spec.json",
+            "karmaConfig": "projects/ags-extension/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/custom-actions/tsconfig.lib.json",
-              "projects/custom-actions/tsconfig.spec.json"
+              "projects/ags-extension/tsconfig.lib.json",
+              "projects/ags-extension/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

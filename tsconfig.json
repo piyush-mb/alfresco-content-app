@@ -20,11 +20,11 @@
     "module": "es2015",
     "baseUrl": "./",
     "paths": {
-      "@custom-actions": [
-        "projects/custom-actions/src/public_api.ts"
+      "@ags-extension": [
+        "dist/ags-extension"
       ],
-      "@custom-actions/*": [
-        "projects/custom-actions/src/public_api.ts/*"
+      "@ags-extension/*": [
+        "dist/ags-extension/*"
       ]
     },
     "resolveJsonModule": true
