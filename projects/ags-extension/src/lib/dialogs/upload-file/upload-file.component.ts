@@ -25,7 +25,6 @@ export class UploadFileComponent {
   }
 
   public onBeginUpload(event: UploadFilesEvent) {
-    console.log(event);
       const files = event.files || [];
       if (files.length > 0) {
         event.pauseUpload();

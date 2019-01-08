@@ -1,13 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadFileComponent } from './upload-file.component';
-import { setupTestBed } from '@alfresco/adf-core';
+import { CoreModule, FileModel, setupTestBed } from '@alfresco/adf-core';
+import { ContentModule, UploadFilesEvent } from '@alfresco/adf-content-services';
+
+
+export function getFakeFile(name = "test.pdf", lastModified= 1534829090290, type = "application/pdf", size = 1024) {
+  return {
+    size: size,
+    type: type,
+    slice(start?: number, end?: number, contentType?: string): Blob {
+      return undefined;
+    },
+    lastModified: lastModified,
+    name: name
+  };
+}
 
 describe('UploadFileComponent', () => {
   let component: UploadFileComponent;
   let fixture: ComponentFixture<UploadFileComponent>;
 
   setupTestBed({
+    imports: [
+      CoreModule,
+      ContentModule
+    ],
     declarations: [
       UploadFileComponent
     ]
@@ -50,57 +68,19 @@ describe('UploadFileComponent', () => {
       expect(component.tableData.getRows.length).toEqual(0);
     });
 
-    // it('should update the table when files dragged or uploaded', () => {
-    //   const fakeUpload = new UploadFilesEvent(
-    //     [
-    //       { file: {lastModified: null, name: 'test.pdf'} }
-    //     ],
-    //     null,
-    //     null
-    //   );
-      // spyOn(alfrescoApi.nodesApi, 'lockNode').and.returnValue(Promise.resolve({}));
-      //
-      // component.submit();
-      //
-      // expect(alfrescoApi.nodesApi.lockNode).toHaveBeenCalledWith(
-      //   'node-id',
-      //   new NodeBodyLock({
-      //     'timeToExpire': 60,
-      //     'type': 'ALLOW_OWNER_CHANGES',
-      //     'lifetime': 'PERSISTENT'
-      //   })
-      // );
-    // });
-    //
-    // it('should submit the form and unlock the node', () => {
-    //   spyOn(alfrescoApi.nodesApi, 'unlockNode').and.returnValue(Promise.resolve({}));
-    //
-    //   component.form.controls['isLocked'].setValue(false);
-    //   component.submit();
-    //
-    //   expect(alfrescoApi.nodesApi.unlockNode).toHaveBeenCalledWith('node-id');
-    // });
-    //
-    // it('should call dialog to close with form data when submit is successfully', fakeAsync(() => {
-    //   const node = { entry: {} };
-    //   spyOn(alfrescoApi.nodesApi, 'lockNode').and.returnValue(Promise.resolve(node));
-    //
-    //   component.submit();
-    //   tick();
-    //   fixture.detectChanges();
-    //
-    //   expect(dialogRef.close).toHaveBeenCalledWith(node.entry);
-    // }));
-    //
-    // it('should call onError if submit fails', fakeAsync(() => {
-    //   spyOn(alfrescoApi.nodesApi, 'lockNode').and.returnValue(Promise.reject('error'));
-    //   spyOn(component.data, 'onError');
-    //
-    //   component.submit();
-    //   tick();
-    //   fixture.detectChanges();
-    //
-    //   expect(component.data.onError).toHaveBeenCalled();
-    // }));
+    it('should update the table when files dragged or uploaded', () => {
+      const fakeUpload = new UploadFilesEvent(
+        [
+          new FileModel(getFakeFile() , null, null)
+        ],
+        null,
+        null
+      );
+
+      component.onBeginUpload(fakeUpload);
+
+      expect(component.currentEvent).toEqual(fakeUpload);
+    });
+
   });
 });
