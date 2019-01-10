@@ -10,10 +10,11 @@
 
   "rules": [
     {
-      "id": "app.extension.isFolder",
-      "type": "core.every",
+      "id": "app.extension.isFile",
+      "type": "core.some",
       "parameters": [
-        { "type": "rule", "value": "app.selection.folder" }
+        { "type": "rule", "value": "app.selection.folder" },
+        {"type": "rule" , "value": "my-fn"}
       ]
     }
   ],
@@ -26,10 +27,27 @@
           {
             "id": "app.toolbar.favorite.add",
             "order": 1600,
-            "title": "Upload File",
+            "title": "View File",
             "icon": "file_upload",
             "rules": {
-              "visible": "app.extension.isFolder"
+              "visible": "app.extension.isFile"
+            },
+            "actions": {
+              "click": "SHOW_MY_DIALOG"
+            }
+          }
+        ]
+      },
+      {
+        "id": "app.toolbar.more",
+        "children": [
+          {
+            "id": "app.toolbar.favorite.add",
+            "order": 1600,
+            "title": "View File",
+            "icon": "file_upload",
+            "rules": {
+              "visible": "app.extension.isFile"
             },
             "actions": {
               "click": "SHOW_MY_DIALOG"
@@ -47,10 +65,10 @@
       {
         "id": "Custom Action",
         "order": 1501,
-        "title": "Upload File",
+        "title": "View File ",
         "icon": "file_upload",
         "rules": {
-          "visible": "app.extension.isFolder"
+          "visible": "app.extension.isFile"
         },
         "actions": {
           "click": "SHOW_MY_DIALOG"

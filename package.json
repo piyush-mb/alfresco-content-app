@@ -106,7 +106,7 @@
     "tsickle": "0.33.1",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.1.6",
+    "typescript": "3.1.6",
     "wait-on": "^3.0.1"
   }
 }
